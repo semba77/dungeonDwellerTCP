@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KlientTcp
+namespace zaverecny_projekt
 {
     class MyReader
     {
@@ -32,7 +32,12 @@ namespace KlientTcp
         }
 
 
-        // omit the parameter to read a line without a timeout
+        /// <summary>
+        /// vypisování chetu i uprostřed psaní
+        /// </summary>
+        /// <param name="timeOutMillisecs"></param>
+        /// <returns></returns>
+        /// <exception cref="TimeoutException"></exception>
         public static string ReadLine(int timeOutMillisecs = Timeout.Infinite)
         {
             getInput.Set();

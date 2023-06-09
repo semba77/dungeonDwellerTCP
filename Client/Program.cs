@@ -1,4 +1,4 @@
-﻿namespace KlientTcp
+﻿namespace zaverecny_projekt
 {
     internal class Program
     {

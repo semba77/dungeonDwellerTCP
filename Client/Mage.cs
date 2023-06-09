@@ -10,10 +10,10 @@ namespace zaverecny_projekt
     {
 
 
-        private int maxMana { get; set; }
-        private int curentMana { get; set; }
+        public int maxMana { get; set; }
+        public int curentMana { get; set; }
 
-        public Mage(int maxHealth, int curentHealth, int baseDamadge, int level, int baseDefence, Equipment helm, Equipment armor, Equipment weapon, int maxMana, int curentMana) : base(maxHealth, curentHealth, baseDamadge, level, baseDefence, helm, armor, weapon)
+        public Mage(int maxHealth, int curentHealth, int baseDamadge, int level, int maxXp, int curentXp, int baseDefence, Equipment helm, Equipment armor, Equipment weapon, int maxMana, int curentMana) : base(maxHealth, curentHealth, baseDamadge, level, maxXp, curentXp, baseDefence, helm, armor, weapon)
         {
             this.maxMana = maxMana;
             this.curentMana = curentMana;

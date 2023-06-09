@@ -14,9 +14,9 @@ namespace zaverecny_projekt
     }
     internal class Equipment
     {
-        private string nazev { get; set; }
-        private TypVyz typ { get; set; }
-        private int stat { get; set; }
+        public string nazev { get; set; }
+        public TypVyz typ { get; set; }
+        public int stat { get; set; }
 
         public Equipment(string nazev, TypVyz typ, int stat)
         {
