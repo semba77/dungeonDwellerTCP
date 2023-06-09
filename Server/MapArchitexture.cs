@@ -18,11 +18,12 @@ namespace zaverecny_projekt
 
     public class Node
     {
-        public Node front;
-        public Node left;
-        public Node right;
-        public Node back;
-        public Typ typ;
+        public Node front { get; set; }
+        public Node left { get; set; }
+        public Node right { get; set; }
+        public Node back { get; set; }
+        public Typ typ { get; set; }
+        public bool enemy { get; set; }
 
         public Node(Typ typ)
         {
@@ -31,16 +32,19 @@ namespace zaverecny_projekt
             this.right = null;
             this.back = null;
             this.typ = typ;
+            this.enemy = false;
         }
     }
     public class MapArchitexture
     {
-        Node room = new Node(Typ.Normal);
-
-        public static void GenerateMap(int pocet)
+        /// <summary>
+        /// generování mapy
+        /// </summary>
+        /// <param name="pocet"></param>
+        /// <param name="spawn"></param>
+        public void GenerateMap(int pocet, Node spawn)
         {
-            Node room = new Node(Typ.Spawn);
-            Node spawn = room;
+            Node room = spawn;
             bool repeat1 = true;
             bool repeat2 = true;
             Random rand = new Random();
@@ -166,7 +170,7 @@ namespace zaverecny_projekt
                             }
                         }
                         if (pocet > 0)
-                            GenerateMap(pocet - 1);
+                            GenerateMap(pocet - 1,room);
                 }
             }
 

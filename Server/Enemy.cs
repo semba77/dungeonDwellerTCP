@@ -8,11 +8,11 @@ namespace zaverecny_projekt
 {
     internal class Enemy
     {
-        private string species { get; set; }
-        private int health { get; set; }
-        private int damadge { get; set; }
-        private int level { get; set; }
-        private int defence { get; set; }
+        public string species { get; set; }
+        public int health { get; set; }
+        public int damadge { get; set; }
+        public int level { get; set; }
+        public int defence { get; set; }
 
         public Enemy(string species, int health, int damadge, int level, int defence)
         {

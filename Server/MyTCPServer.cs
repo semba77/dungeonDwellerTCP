@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TcpServerC3c.Command;
 
-namespace TcpServerC3c
+namespace zaverecny_projekt
 {
     public class MyTCPServer
     {
@@ -15,7 +15,7 @@ namespace TcpServerC3c
         private bool isRunning;
         private Dictionary<string, StreamWriter> clients;
         private Dictionary<string, ICommand> commands = new Dictionary<string, ICommand>();
-
+        Node curentRoom = new Node(Typ.Spawn);
         public MyTCPServer(int port)
         {
             clients = new Dictionary<string, StreamWriter>();
@@ -23,15 +23,15 @@ namespace TcpServerC3c
             myServer.Start();
             isRunning = true;
             Inicializace();
-            GenerateMap(50);
+            MapArchitexture m = new MapArchitexture();
+
+            m.GenerateMap(50, curentRoom);
             ServerLoop();
         }
 
         private void Inicializace()
         {
             commands.Add("help", new HelpCommand());
-            commands.Add("time", new TimeCommand());
-            commands.Add("ipconfig", new IpConfigCommand());
         }
 
         private void ServerLoop()
@@ -44,7 +44,10 @@ namespace TcpServerC3c
                 thread.Start(client);
             }
         }
-
+        /// <summary>
+        /// komunikace s hráci
+        /// </summary>
+        /// <param name="myClient"></param>
         private void ClientLoop(object myClient)
         {
             TcpClient client = (TcpClient)myClient;
@@ -83,14 +86,74 @@ namespace TcpServerC3c
 
             while (clientConnect)
             {
-                writer.WriteLine("input"); 
-                writer.Flush();
+//                writer.WriteLine("input"); 
+//                writer.Flush();
                 data = reader.ReadLine();
                 data = data.ToLower();
                 Console.WriteLine(data);
                 string[] word = data.Split(' ', 2);
                 switch(word[0])
                 {
+                    case "presun":
+                        if(word[1] == "request")
+                        {
+                            data = "napiste cislo smeru";
+                            if (curentRoom.front != null)
+                            {
+                                data += "\n1: dopredu";
+                            }
+                            if (curentRoom.left != null)
+                            {
+                                data += "\n2: doleva";
+                            }
+                            if (curentRoom.right != null)
+                            {
+                                data += "\n3: doprava";
+                            }
+                            if (curentRoom.back != null)
+                            {
+                                data += "\n4: dozadu";
+                            }
+                            writer.WriteLine(data);
+                            writer.Flush();
+                            break;
+                        }
+
+                        if (word[1] == "1") 
+                        {
+                            if(curentRoom.front != null)
+                            {
+                                curentRoom = curentRoom.front;
+                                writer.WriteLine("plese kile mi");
+                                writer.Flush();
+                                break;
+                            }
+                        }
+                        if (word[1] == "2")
+                        {
+                            if (curentRoom.left != null)
+                            {
+                                curentRoom = curentRoom.left;
+                                break;
+                            }
+                        }
+                        if (word[1] == "3")
+                        {
+                            if (curentRoom.right != null)
+                            {
+                                curentRoom = curentRoom.right;
+                                break;
+                            }
+                        }
+                        if (word[1] == "4")
+                        {
+                            if (curentRoom.back != null)
+                            {
+                                curentRoom = curentRoom.back;
+                                break;
+                            }
+                        }
+                        break;
                     case "send":
                         foreach (StreamWriter w in clients.Values)
                         {

@@ -1,4 +1,4 @@
-﻿namespace TcpServerC3c
+﻿namespace zaverecny_projekt
 {
     internal class Program
     {
