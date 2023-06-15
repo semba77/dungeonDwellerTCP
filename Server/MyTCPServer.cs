@@ -86,8 +86,6 @@ namespace zaverecny_projekt
 
             while (clientConnect)
             {
-//                writer.WriteLine("input"); 
-//                writer.Flush();
                 data = reader.ReadLine();
                 data = data.ToLower();
                 Console.WriteLine(data);
@@ -124,7 +122,6 @@ namespace zaverecny_projekt
                             if(curentRoom.front != null)
                             {
                                 curentRoom = curentRoom.front;
-                                writer.Flush();
                                 break;
                             }
                         }
@@ -159,7 +156,7 @@ namespace zaverecny_projekt
                             if (w != writer)
                             {
                                 w.WriteLine("print "+word[1]);
-                                w.WriteLine("input");
+//                                w.WriteLine("input");
                                 w.Flush();
                             }
                         }
