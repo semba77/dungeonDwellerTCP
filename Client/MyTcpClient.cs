@@ -97,8 +97,7 @@ namespace zaverecny_projekt
                         Equipment starterHelm = new Equipment("spatna helma", TypVyz.Helm, 1);
                         Equipment starterArmor = new Equipment("spatna tunika", TypVyz.Armor, 1);
                         Equipment starterWeapon = new Equipment("rezava mec", TypVyz.Weapon, 1);
-                        w = new Player(20, 20, 10, 1, 20, 0, 1, starterHelm, starterArmor, starterWeapon);
-                        
+                        w = new Player(20, 20, 10, 1, 20, 0, 1, starterHelm, starterArmor, starterWeapon);                        
                         choosen = true;
                     }
                     else if (pClass == "2")
@@ -174,14 +173,14 @@ namespace zaverecny_projekt
 
                             break;
                         case "chat":
-                            data = reader.ReadLine();
+ //                           data = reader.ReadLine();
                             string[] word = data.Split(' ', 2);
                             bool chatRunning = true;
                             foreach (string elements in messeges)
                             {
                                 Console.WriteLine(elements);
                             }
-                            Console.WriteLine("před zprávu napiste 'print'");
+                            Console.WriteLine("před zprávu napiste 'send'");
                             word[0] = "input";
                             bool start = false;
                             while (chatRunning)
