@@ -118,61 +118,62 @@ namespace zaverecny_projekt
                             repeat1 = false;
                             break;
                         }
-                        while (repeat2)
-                        {
-                            int random2 = rand.Next(4);
-                            switch (random2)
-                            {
-                                case 0:
-                                    if (room.front == null)
-                                    {
-                                        break;
-                                    }
-                                    else
-                                    {
-                                        room = room.front;
-                                        repeat2 = false;
-                                        break;
-                                    }
-                                case 1:
-                                    if (room.back == null)
-                                    {
-                                        break;
-                                    }
-                                    else
-                                    {
-                                        room = room.back;
-                                        repeat2 = false;
-                                        break;
-                                    }
-                                case 2:
-                                    if (room.left == null)
-                                    {
-                                        break;
-                                    }
-                                    else
-                                    {
-                                        room = room.left;
-                                        repeat2 = false;
-                                        break;
-                                    }
-                                case 3:
-                                    if (room.right == null)
-                                    {
-                                        break;
-                                    }
-                                    else
-                                    {
-                                        room = room.right;
-                                        repeat2 = false;
-                                        break;
-                                    }
-                            }
-                        }
-                        if (pocet > 0)
-                            GenerateMap(pocet - 1,room);
                 }
+                while (repeat2)
+                {
+                    int random2 = rand.Next(4);
+                    switch (random2)
+                    {
+                        case 0:
+                            if (room.front == null)
+                            {
+                                break;
+                            }
+                            else
+                            {
+                                room = room.front;
+                                repeat2 = false;
+                                break;
+                            }
+                        case 1:
+                            if (room.back == null)
+                            {
+                                break;
+                            }
+                            else
+                            {
+                                room = room.back;
+                                repeat2 = false;
+                                break;
+                            }
+                        case 2:
+                            if (room.left == null)
+                            {
+                                break;
+                            }
+                            else
+                            {
+                                room = room.left;
+                                repeat2 = false;
+                                break;
+                            }
+                        case 3:
+                            if (room.right == null)
+                            {
+                                break;
+                            }
+                            else
+                            {
+                                room = room.right;
+                                repeat2 = false;
+                                break;
+                            }
+                    }
+                }
+                if (pocet > 0)
+                    GenerateMap(pocet - 1, room);
             }
+
 
         }
     }

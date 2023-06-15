@@ -4,7 +4,7 @@ using System.Linq;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
-using TcpServerC3c.Command;
+//using TcpServerC3c.Command;
 
 namespace zaverecny_projekt
 {
@@ -14,7 +14,7 @@ namespace zaverecny_projekt
         public TcpListener myServer { get; }
         private bool isRunning;
         private Dictionary<string, StreamWriter> clients;
-        private Dictionary<string, ICommand> commands = new Dictionary<string, ICommand>();
+        //private Dictionary<string, ICommand> commands = new Dictionary<string, ICommand>();
         Node curentRoom = new Node(Typ.Spawn);
         public MyTCPServer(int port)
         {
@@ -31,7 +31,7 @@ namespace zaverecny_projekt
 
         private void Inicializace()
         {
-            commands.Add("help", new HelpCommand());
+           // commands.Add("help", new HelpCommand());
         }
 
         private void ServerLoop()
@@ -124,7 +124,6 @@ namespace zaverecny_projekt
                             if(curentRoom.front != null)
                             {
                                 curentRoom = curentRoom.front;
-                                writer.WriteLine("plese kile mi");
                                 writer.Flush();
                                 break;
                             }
