@@ -36,6 +36,7 @@ namespace zaverecny_projekt
             Console.WriteLine("Klient byl spusten"); 
             try
             {
+                ArrayList inventory = new ArrayList();
                 TcpClient myClient = (TcpClient)tcpClient;
                 reader = new StreamReader(myClient.GetStream(), Encoding.UTF8);
                 writer = new StreamWriter(myClient.GetStream(), Encoding.UTF8);
@@ -94,27 +95,27 @@ namespace zaverecny_projekt
                     if (pClass == "1")
                     {
 
-                        Equipment starterHelm = new Equipment("spatna helma", TypVyz.Helm, 1);
-                        Equipment starterArmor = new Equipment("spatna tunika", TypVyz.Armor, 1);
-                        Equipment starterWeapon = new Equipment("rezava mec", TypVyz.Weapon, 1);
-                        w = new Player(20, 20, 10, 1, 20, 0, 1, starterHelm, starterArmor, starterWeapon);                        
+                        Equipment equipedHelm = new Equipment("spatna helma", TypVyz.Helm, 1);
+                        Equipment equipedArmor = new Equipment("spatna tunika", TypVyz.Armor, 1);
+                        Equipment equipedWeapon = new Equipment("rezava mec", TypVyz.Weapon, 1);
+                        w = new Player(20, 20, 10, 1, 20, 0, 1, equipedHelm, equipedArmor, equipedWeapon);                        
                         choosen = true;
                     }
                     else if (pClass == "2")
                     {
                         
-                        Equipment starterHelm = new Equipment("spatna helma", TypVyz.Helm, 1);
-                        Equipment starterArmor = new Equipment("spatna tunika", TypVyz.Armor, 1);
-                        Equipment starterWeapon = new Equipment("plesniva hul", TypVyz.Weapon, 1);
-                        m = new Mage(20, 20, 10, 1, 20, 0, 1, starterHelm, starterArmor, starterWeapon, 20, 20);
+                        Equipment equipedHelm = new Equipment("spatna helma", TypVyz.Helm, 1);
+                        Equipment equipedArmor = new Equipment("spatna tunika", TypVyz.Armor, 1);
+                        Equipment equipedWeapon = new Equipment("plesniva hul", TypVyz.Weapon, 1);
+                        m = new Mage(20, 20, 10, 1, 20, 0, 1, equipedHelm, equipedArmor, equipedWeapon, 20, 20);
                         choosen = true;
                     }
                     else if (pClass == "3")
                     {
-                        Equipment starterHelm = new Equipment("spatna helma", TypVyz.Helm, 1);
-                        Equipment starterArmor = new Equipment("spatna tunika", TypVyz.Armor, 1);
-                        Equipment starterWeapon = new Equipment("plesniva hul", TypVyz.Weapon, 1);
-                        p = new Priest(20, 20, 10, 1, 20, 0, 1,starterHelm, starterArmor, starterWeapon, 20, 20);
+                        Equipment equipedHelm = new Equipment("spatna helma", TypVyz.Helm, 1);
+                        Equipment equipedArmor = new Equipment("spatna tunika", TypVyz.Armor, 1);
+                        Equipment equipedWeapon = new Equipment("plesniva hul", TypVyz.Weapon, 1);
+                        p = new Priest(20, 20, 10, 1, 20, 0, 1, equipedHelm, equipedArmor, equipedWeapon, 20, 20);
                         choosen = true;
                     }
                     
@@ -158,14 +159,130 @@ namespace zaverecny_projekt
                             }
                             break;
                         case "inventar":
+                            bool leave = false;
+                            while (!leave)
+                            {
+                                Console.WriteLine("1.prohlednout vybavu \n 2.nahlednout do batohu \n 3.opustit inventar");
+                                string typinve = Console.ReadLine();
+                                if (typinve == "1")
+                                {
+                                    bool leavev = false;
+                                    if (p != null)
+                                    {
+                                        while (!leavev)
+                                        {
+                                            Console.WriteLine($" helma:{p.helm.nazev} \n zbroj:{p.armor.nazev} \n zbran:{p.weapon.nazev}");
+                                            Console.WriteLine("vyber akci:\n 1.info helma \n 2.info zbroj \n 3.info zbran \n 4.sundat helmu \n 5.sundat zbroj \n 6.sundat zbran \n 7.vratit zpet");
+                                            string typakce = Console.ReadLine();
+                                            switch (typakce)
+                                            {
+                                                case "1":
+                                                    Console.WriteLine($"nazev: {p.helm.nazev}\n stat: {p.helm.stat}");
+                                                    break;
+                                                case "2":
+                                                    Console.WriteLine($"nazev: {p.armor.nazev}\n stat: {p.armor.stat}");
+                                                    break;
+                                                case "3":
+                                                    Console.WriteLine($"nazev: {p.weapon.nazev}\n stat: {p.weapon.stat}");
+                                                    break;
+                                                case "4":
 
+                                                    break;
+                                                case "5":
+
+                                                    break;
+                                                case "6":
+
+                                                    break;
+                                                case "7":
+                                                    leavev = true;
+                                                    break;
+                                            }
+                                        }
+                                    }
+                                    if (w != null)
+                                    {
+                                        while (!leavev)
+                                        {
+                                            Console.WriteLine($" helma:{w.helm.nazev} \n zbroj:{w.armor.nazev} \n zbran:{w.weapon.nazev}");
+                                            Console.WriteLine("vyber akci:\n 1.info helma \n 2.info zbroj \n 3.info zbran \n 4.sundat helmu \n 5.sundat zbroj \n 6.sundat zbran \n 7.vratit zpet");
+                                            string typakce = Console.ReadLine();
+                                            switch (typakce)
+                                            {
+                                                case "1":
+                                                    Console.WriteLine($"nazev: {w.helm.nazev}\n stat: {w.helm.stat}");
+                                                    break;
+                                                case "2":
+                                                    Console.WriteLine($"nazev: {w.armor.nazev}\n stat: {w.armor.stat}");
+                                                    break;
+                                                case "3":
+                                                    Console.WriteLine($"nazev: {w.weapon.nazev}\n stat: {w.weapon.stat}");
+                                                    break;
+                                                case "4":
+
+                                                    break;
+                                                case "5":
+
+                                                    break;
+                                                case "6":
+
+                                                    break;
+                                                case "7":
+                                                    leavev = true;
+                                                    break;
+                                            }
+                                        }
+                                    }
+                                    if (m != null)
+                                    {
+                                        while (!leavev)
+                                        {
+                                            Console.WriteLine($" helma:{m.helm.nazev} \n zbroj:{m.armor.nazev} \n zbran:{m.weapon.nazev}");
+                                            Console.WriteLine("vyber akci:\n 1.info helma \n 2.info zbroj \n 3.info zbran \n 4.sundat helmu \n 5.sundat zbroj \n 6.sundat zbran \n 7.vratit zpet");
+                                            string typakce = Console.ReadLine();
+                                            switch (typakce)
+                                            {
+                                                case "1":
+                                                    Console.WriteLine($"nazev: {m.helm.nazev}\n stat: {m.helm.stat}");
+                                                    break;
+                                                case "2":
+                                                    Console.WriteLine($"nazev: {m.armor.nazev}\n stat: {m.armor.stat}");
+                                                    break;
+                                                case "3":
+                                                    Console.WriteLine($"nazev: {m.weapon.nazev}\n stat: {m.weapon.stat}");
+                                                    break;
+                                                case "4":
+
+                                                    break;
+                                                case "5":
+
+                                                    break;
+                                                case "6":
+
+                                                    break;
+                                                case "7":
+                                                    leavev = true;
+                                                    break;
+                                            }
+                                        }
+                                    }
+                                }
+                                else if (typinve == "2")
+                                {
+                                    
+                                }
+                                else if (typinve == "3")
+                                {
+                                    leave = true;
+                                }
+                            }
                             break;
                         case "presun":
                             writer.WriteLine("presun request");
                             writer.Flush();
                             data = reader.ReadLine();
                             Console.WriteLine(data);
-                            data = "presun ";
+                            data = "presun "; 
                             data += Console.ReadLine();
                             writer.WriteLine(data);
                             break;
